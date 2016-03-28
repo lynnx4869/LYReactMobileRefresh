@@ -10,14 +10,14 @@ var LYReactMobileRefresh = React.createClass({
 	    maxOffset: React.PropTypes.number
 	},
 
-	getDefaultProps() {
+	getDefaultProps: function(){
 	    return {
 	        refreshing: function(){},
 	        maxOffset: 60
 	    };
 	},
 
-	getInitialState() {
+	getInitialState: function(){
 	    return {
 	        title: '下拉即可刷新...',
 	        isRefresh: false
