@@ -1,6 +1,6 @@
 var React = require('react');
 
-var CubeGrid = React.createClass({
+var LYCubeGrid = React.createClass({
 	render: function() {
 		return (
 			<div className="sk-cube-grid">
@@ -95,7 +95,7 @@ var LYReactMobileRefresh = React.createClass({
 				refreshTitle.style.height = "5rem";
 				refreshTitle.style.lineHeight = "5rem";
 				this.setState({
-					title: <CubeGrid />,
+					title: <LYCubeGrid />,
 					isRefresh: true
 				});
 
