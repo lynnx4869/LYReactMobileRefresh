@@ -1,7 +1,8 @@
 var React = require('react');
-//var LYCubeGrid = require('./LYCubeGrid.js');
 
 var LYReactMobileRefresh = React.createClass({
+	displayName: 'LYReactMobileRefresh',
+
 	startY: 0,
 	endY: 0,
 
@@ -25,6 +26,9 @@ var LYReactMobileRefresh = React.createClass({
 	},
 
 	componentDidMount: function(){
+		var refreshLoading = document.getElementById('refreshLoading');
+		refreshLoading.style.display = "none";
+		
 		var refreshLists = document.getElementById('refreshLists');
 		refreshLists.addEventListener('touchstart', this.touchStart, false);
 		refreshLists.addEventListener('touchmove', this.touchMove, false);
@@ -75,9 +79,12 @@ var LYReactMobileRefresh = React.createClass({
 				refreshTitle.style.height = "5rem";
 				refreshTitle.style.lineHeight = "5rem";
 				this.setState({
-					title: '刷新中...',//React.createElement(LYCubeGrid, null),
+					title: '',//React.createElement(LYCubeGrid, null),
 					isRefresh: true
 				});
+
+				var refreshLoading = document.getElementById('refreshLoading');
+				refreshLoading.style.display = "block";
 
 				var that = this;
 				this.props.refreshing(function(){
@@ -97,6 +104,9 @@ var LYReactMobileRefresh = React.createClass({
 			title: '下拉即可刷新...',
 			isRefresh: false
 		});
+
+		var refreshLoading = document.getElementById('refreshLoading');
+		refreshLoading.style.display = "none";
 	},
 
 	render: function() {
@@ -106,7 +116,24 @@ var LYReactMobileRefresh = React.createClass({
 			React.createElement(
 				'div',
 				{ id: 'refreshTitle', className: 'refreshTitle' },
-				this.state.title
+				this.state.title,
+				React.createElement(
+					'div',
+					{ id: 'refreshLoading' },
+					React.createElement(
+						"div",
+						{ className: "sk-cube-grid" },
+						React.createElement("div", { className: "sk-cube sk-cube1" }),
+						React.createElement("div", { className: "sk-cube sk-cube2" }),
+						React.createElement("div", { className: "sk-cube sk-cube3" }),
+						React.createElement("div", { className: "sk-cube sk-cube4" }),
+						React.createElement("div", { className: "sk-cube sk-cube5" }),
+						React.createElement("div", { className: "sk-cube sk-cube6" }),
+						React.createElement("div", { className: "sk-cube sk-cube7" }),
+						React.createElement("div", { className: "sk-cube sk-cube8" }),
+						React.createElement("div", { className: "sk-cube sk-cube9" })
+					)
+				)
 			),
 			React.createElement(
 				'div',
