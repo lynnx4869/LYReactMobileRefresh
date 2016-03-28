@@ -1,6 +1,6 @@
 {
   "name": "ly-react-mobile-refresh",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A drop-down refresh component bases on ReactJs for mobile devices.",
   "main": "index.js",
   "scripts": {

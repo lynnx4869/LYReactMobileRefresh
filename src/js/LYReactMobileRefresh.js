@@ -1,5 +1,5 @@
 var React = require('react');
-var LYCubeGrid = require('./LYCubeGrid');
+//var LYCubeGrid = require('./LYCubeGrid.js');
 
 var LYReactMobileRefresh = React.createClass({
 	startY: 0,
@@ -78,7 +78,7 @@ var LYReactMobileRefresh = React.createClass({
 				refreshTitle.style.height = "5rem";
 				refreshTitle.style.lineHeight = "5rem";
 				this.setState({
-					title: <LYCubeGrid />,
+					title: '刷新中...',
 					isRefresh: true
 				});
 
