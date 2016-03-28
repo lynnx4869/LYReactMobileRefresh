@@ -1,7 +1,5 @@
 var React = require('react');
 
-var maxOffset = 60;
-
 var CubeGrid = React.createClass({
 	render: function() {
 		return (
@@ -25,12 +23,14 @@ var LYReactMobileRefresh = React.createClass({
 	endY: 0,
 
 	propTypes: {
-	    refreshing: React.PropTypes.func.isRequired
+	    refreshing: React.PropTypes.func.isRequired,
+	    maxOffset: React.PropTypes.number
 	},
 
 	getDefaultProps() {
 	    return {
-	        refreshing: function(){}
+	        refreshing: function(){},
+	        maxOffset: 60
 	    };
 	},
 
@@ -71,7 +71,7 @@ var LYReactMobileRefresh = React.createClass({
 				refreshTitle.style.height = offset + "px";
 				refreshTitle.style.lineHeight = offset + "px";
 
-				if(offset < maxOffset){
+				if(offset < this.props.maxOffset){
 					this.setState({
 						title: '下拉即可刷新...'
 					});
@@ -90,7 +90,7 @@ var LYReactMobileRefresh = React.createClass({
 		if(window.pageYOffset == 0 && !this.state.isRefresh){
 			var touch = e.changedTouches[0];
 			this.endY = touch.pageY;
-			if(this.endY - this.startY > maxOffset){
+			if(this.endY - this.startY > this.props.maxOffset){
 				var refreshTitle = document.getElementById('refreshTitle');
 				refreshTitle.style.height = "5rem";
 				refreshTitle.style.lineHeight = "5rem";
