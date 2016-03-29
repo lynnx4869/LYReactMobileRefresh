@@ -8,19 +8,23 @@ var LYReactMobileRefresh = React.createClass({
 
 	propTypes: {
 	    refreshing: React.PropTypes.func.isRequired,
-	    maxOffset: React.PropTypes.number
+	    maxOffset: React.PropTypes.number,
+	    beforeRefreshText: React.PropTypes.string,
+	    willRefreshText: React.PropTypes.string
 	},
 
 	getDefaultProps: function(){
 	    return {
 	        refreshing: function(){},
-	        maxOffset: 60
+	        maxOffset: 60,
+	        beforeRefreshText: '下拉即可刷新...',
+	    	willRefreshText: '松手即可刷新...'
 	    };
 	},
 
 	getInitialState: function(){
 	    return {
-	        title: '下拉即可刷新...',
+	        title: this.props.beforeRefreshText,
 	        isRefresh: false
 	    };
 	},
@@ -59,11 +63,11 @@ var LYReactMobileRefresh = React.createClass({
 
 				if(offset < this.props.maxOffset){
 					this.setState({
-						title: '下拉即可刷新...'
+						title: this.props.beforeRefreshText
 					});
 				}else{
 					this.setState({
-						title: '松手即可刷新...'
+						title: this.props.willRefreshText
 					});
 				}
 			}
@@ -79,7 +83,7 @@ var LYReactMobileRefresh = React.createClass({
 				refreshTitle.style.height = "5rem";
 				refreshTitle.style.lineHeight = "5rem";
 				this.setState({
-					title: '',//React.createElement(LYCubeGrid, null),
+					title: '',
 					isRefresh: true
 				});
 
@@ -90,6 +94,8 @@ var LYReactMobileRefresh = React.createClass({
 				this.props.refreshing(function(){
 					that.refreshEnd();
 				});
+			}else{
+				this.refreshEnd();
 			}
 		}
 		
@@ -101,7 +107,7 @@ var LYReactMobileRefresh = React.createClass({
 		refreshTitle.style.height = "0px";
 		refreshTitle.style.lineHeight = "0px";
 		this.setState({
-			title: '下拉即可刷新...',
+			title: this.props.beforeRefreshText,
 			isRefresh: false
 		});
 
